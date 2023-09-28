@@ -1,49 +1,25 @@
+import { useState } from "react";
 import "./App.css";
-import CourseCard from "./components/CourseCard/CourseCard";
 
 function App() {
+  let [count, setCount] = useState(0);
 
-  const courses = 
-  [
-    {
-      id: 1,
-      image:
-        "https://ultimatecourses.com/assets/share/courses/react-f02200115da09fd485a296e351972d7ea75701ed8d3d023d9f18c4b38e6b18b0.png",
-      level: "Intermediate",
-      title: "Introduction Basic Programming HTML & CSS",
-      user: {
-        avatar:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
-        name: "John Doe"
-      },
-      rating: 4.5,
-      students: 1234,
-      modules: 5,
-      duration: 5400
-    },
-    {
-      id: 2,
-      image:
-        "https://ultimatecourses.com/assets/share/courses/react-f02200115da09fd485a296e351972d7ea75701ed8d3d023d9f18c4b38e6b18b0.png",
-      level: "Intermediate",
-      title: "Introduction Basic Programming HTML & CSS",
-      user: {
-        avatar:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png",
-        name: "John Doe"
-      },
-      rating: 4.5,
-      students: 1234,
-      modules: 5,
-      finishedModules: 3,
-      duration: 5400,
-      isMyCourse: true
-    }
-  ];
+  const incrementCount = () => {
+    setCount(count + 1);
+  };
+  const decrementCount = () => {
+    setCount(count - 1);
+  };
+  const resetCount = () => {
+    setCount(count = 0);
+  };
+
   return (
-    <div >
-      <CourseCard courses={courses[0]}/>
-      <CourseCard courses={courses[1]} isMyCourse={true}/>
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={incrementCount}>Increment</button>
+      <button onClick={decrementCount}>Decrement</button>
+      <button onClick={resetCount}>Reset</button>
     </div>
   );
 }
