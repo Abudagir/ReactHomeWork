@@ -1,24 +1,30 @@
-import { Route, Routes } from "react-router-dom";
+import { createContext, useState } from "react";
 import "./App.css";
-import AllPosts from "./pages/AllPosts";
-import Post from "./pages/Post";
-import PageNotFound from "./pages/PageNotFound";
-// import Header from "./components/Header";
+import ComponentA from "./myContext/ComponentA";
+
+export const Context = createContext(null);
 
 function App() {
+  const [tasks, setTasks] = useState(["React"]);
+  const [name, setName] = useState("");
+
+  const handleAddNewTask = () => {
+    const item = [...tasks, name];
+    setTasks(item);
+  };
+
   return (
-    <div>
+    <Context.Provider value={tasks}>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
 
-    {/* <Header /> */}
+      <button onClick={handleAddNewTask}>Create new task</button>
 
-    
-      <Routes>
-        <Route path="/posts" element={<AllPosts />}></Route>
-        <Route path="/posts/:id" element={<Post />}></Route>
-
-        <Route path="*" element={<PageNotFound />}></Route>
-      </Routes>
-    </div>
+      <ComponentA />
+    </Context.Provider>
   );
 }
 
